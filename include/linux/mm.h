@@ -40,6 +40,16 @@ extern int sysctl_page_lock_unfairness;
 
 void init_mm_internals(void);
 
+static inline void vm_flags_set(struct vm_area_struct *vma, vm_flags_t flags)
+{ 
+	vma->vm_flags |= flags; 
+}
+
+static inline void vm_flags_clear(struct vm_area_struct *vma, vm_flags_t flags)
+{ 
+	vma->vm_flags &= ~flags; 
+}
+
 #ifndef CONFIG_NUMA		/* Don't use mapnrs, do it properly */
 extern unsigned long max_mapnr;
 
